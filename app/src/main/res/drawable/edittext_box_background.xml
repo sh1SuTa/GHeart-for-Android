@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 设置背景颜色 -->
+    <solid android:color="#70FFFFFF"/> <!-- 背景颜色，白色 -->
+
+    <!-- 设置边框 -->
+    <stroke android:color="#70000000" android:width="2dp"/> <!-- 边框颜色为黑色，宽度为2dp -->
+
+    <!-- 设置圆角 -->
+    <corners android:radius="8dp"/> <!-- 设置圆角半径，8dp -->
+
+    <!-- 设置阴影效果（可选） -->
+     <elevation android:value="4dp"/>
+</shape>

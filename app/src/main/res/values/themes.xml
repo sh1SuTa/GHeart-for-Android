@@ -1,0 +1,7 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.GreenHearts" parent="Theme.AppCompat.DayNight.NoActionBar">
+
+    </style>
+
+    <style name="Theme.GreenHearts" parent="Base.Theme.GreenHearts" />
+</resources>
