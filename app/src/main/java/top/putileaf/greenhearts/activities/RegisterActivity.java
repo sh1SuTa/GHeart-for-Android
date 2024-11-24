@@ -10,7 +10,11 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.IOException;
+import java.lang.reflect.Type;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -19,6 +23,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import top.putileaf.greenhearts.R;
+import top.putileaf.greenhearts.entity.Result;
+import top.putileaf.greenhearts.entity.User;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -74,12 +80,18 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 //System.out.println("响应："+response.body().string());
-                Thread thread = new Thread(new Runnable() {
+                String responseBody = response.body().string();
+                Gson gson = new Gson();
+                // 使用 TypeToken 来解析泛型
+                Type resultType = new TypeToken<Result<User>>() {}.getType();
+                Result<User> apiResponse = gson.fromJson(responseBody, resultType);
+                runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
                     }
                 });
+
 
             }
 

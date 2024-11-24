@@ -39,7 +39,9 @@ dependencies {
     androidTestImplementation libs.espresso.core
     //OKhttp依赖
     implementation(libs.com.squareup.okhttp3.okhttp)
-
+    //lombok依赖
+    implementation libs.lombok
+    annotationProcessor libs.lombok
     // Retrofit 依赖
     implementation libs.retrofit
     implementation libs.converter.gson
