@@ -9,6 +9,7 @@ android {
     defaultConfig {
         applicationId "top.putileaf.greenhearts"
         minSdk 24
+        //noinspection OldTargetApi
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -29,7 +30,6 @@ android {
 }
 
 dependencies {
-
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity
@@ -37,4 +37,10 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+    //OKhttp依赖
+    implementation(libs.com.squareup.okhttp3.okhttp)
+
+    // Retrofit 依赖
+    implementation libs.retrofit
+    implementation libs.converter.gson
 }
