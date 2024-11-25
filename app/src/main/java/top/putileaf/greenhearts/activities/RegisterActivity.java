@@ -1,5 +1,8 @@
 package top.putileaf.greenhearts.activities;
 
+
+import static top.putileaf.greenhearts.utils.PublicApi.PUBLIC_URL;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -65,14 +68,14 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "两次密码输入不相同", Toast.LENGTH_SHORT).show();
             return;
         }
-        String publicUrl = "http://156.238.251.87:8080/";
+
         okHttpClient = new OkHttpClient.Builder().build();
         FormBody formBody = new FormBody.Builder()
                 .add("username", username)
                 .add("password", password)
                 .build();
         Request request = new Request.Builder()
-                .url(publicUrl+"user/register")
+                .url(PUBLIC_URL+"user/register")
                 .post(formBody)
                 .build();
 
@@ -85,14 +88,20 @@ public class RegisterActivity extends AppCompatActivity {
                 // 使用 TypeToken 来解析泛型
                 Type resultType = new TypeToken<Result<User>>() {}.getType();
                 Result<User> apiResponse = gson.fromJson(responseBody, resultType);
+                if (apiResponse.getCode() == 1) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
             }
 
             @Override
